@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Function to check if a flight route is available
+bool isFlightAvailable(string origin, string destination) {
+    // For simplicity, return true for all combinations
+    return true;
+}
+
+// Function to check if cargo type is permissible on a flight route
+bool isCargoPermissible(string cargoType, string origin, string destination) {
+    // For simplicity, return true for all cargo types and routes
+    return true;
+}
+
+// Function to display available flight routes
+void displayFlightRoutes() {
+    cout << "Available Flight Routes:" << endl;
+    cout << "1. New York to London" << endl;
+    cout << "2. London to Paris" << endl;
+    cout << "3. Paris to New York" << endl;
+}
+
+// Function to display available cargo types
+void displayCargoTypes() {
+    cout << "Available Cargo Types:" << endl;
+    cout << "1. Perishable Goods" << endl;
+    cout << "2. Electronics" << endl;
+    cout << "3. Clothing" << endl;
+}
+
+int main() {
+    // Variables to store user input
+    int routeChoice, cargoChoice;
+
+    // Display available flight routes and cargo types
+    displayFlightRoutes();
+    displayCargoTypes();
+
+    // Get user input for flight route and cargo type
+    cout << "Enter the number corresponding to the desired flight route: ";
+    cin >> routeChoice;
+    cout << "Enter the number corresponding to the desired cargo type: ";
+    cin >> cargoChoice;
+
+    // Perform scheduling based on user input
+    switch (routeChoice) {
+        case 1:
+            if (isFlightAvailable("New York", "London") && isCargoPermissible("Perishable Goods", "New York", "London")) {
+                cout << "Flight from New York to London scheduled for Perishable Goods." << endl;
+            } else {
+                cout << "Error scheduling flight from New York to London." << endl;
+            }
+            break;
+        case 2:
+            if (isFlightAvailable("London", "Paris") && isCargoPermissible("Electronics", "London", "Paris")) {
+                cout << "Flight from London to Paris scheduled for Electronics." << endl;
+            } else {
+                cout << "Error scheduling flight from London to Paris." << endl;
+            }
+            break;
+        case 3:
+            if (isFlightAvailable("Paris", "New York") && isCargoPermissible("Clothing", "Paris", "New York")) {
+                cout << "Flight from Paris to New York scheduled for Clothing." << endl;
+            } else {
+                cout << "Error scheduling flight from Paris to New York." << endl;
+            }
+            break;
+        default:
+            cout << "Invalid choice." << endl;
+            break;
+    }
+
+    return 0;
+}
