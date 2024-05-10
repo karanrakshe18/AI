@@ -1,11 +1,14 @@
-g={
-    0:[1,2],
-    1:[4,5],
-    2:[3],
-    3:[2],
-    4:[1],
-    5:[1]
-}
+g = {}
+n = int(input("Enter no. of edges: "))
+
+for i in range(n):
+    a, b = map(int, input().split())
+    if g.get(a) == None:
+        g[a] = []
+    g[a].append(b)
+    if g.get(b) == None:
+        g[b] = []
+    g[b].append(a)
 def dfs(g,s):
     vist[s]=1
     print(s)
