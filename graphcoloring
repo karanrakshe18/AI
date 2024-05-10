@@ -1,0 +1,42 @@
+m = int(input("Enter Number of max colors: "))
+g = {}
+n = int(input("Enter no. of edges: "))
+
+for i in range(n):
+    a, b = map(int, input().split())
+    if g.get(a) == None:
+        g[a] = []
+    g[a].append(b)
+    if g.get(b) == None:
+        g[b] = []
+    g[b].append(a)
+
+print(g)
+
+pos_col = ["red", "orange", "blue", "green", "indigo", "violet", "yellow"]
+
+def canColor(g, n, col, col_list):
+    for child in g[n]:
+        if col_list[child] == pos_col[col]:
+            return False
+    return True
+
+def graph_coloring(g, m, v, n, col_list):
+    if n == v:
+        return True
+    for col in range(m):
+        if canColor(g, n, col, col_list):  # Fixed the argument passed to canColor
+            col_list[n] = pos_col[col]
+            if graph_coloring(g, m, v, n + 1, col_list):
+                return True
+            col_list[n] = -1
+    return False  # Added a return statement here
+
+col_list = {}
+for i in g.keys():
+    col_list[i] = -1
+
+if graph_coloring(g, m, len(g.keys()), 0, col_list):
+    print(col_list)
+else:
+    print(f"Can't color using m({m}) colors")
